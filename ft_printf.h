@@ -60,5 +60,6 @@ int 	ft_count_bytes(wchar_t c);
 int		ft_wstrlen(wchar_t *str);
 void	ft_collect_flags(char c, t_flags *f, const char ***str, int n_width);
 int 	ft_percentage(t_flags *f);
+int 	ft_plus_space(intmax_t i, t_flags *f);
 
 #endif

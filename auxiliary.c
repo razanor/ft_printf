@@ -33,6 +33,27 @@ int		ft_conversions(char c)
 	return (0);
 }
 
+int ft_plus_space(intmax_t i, t_flags *f)
+{
+	if (f->plus)
+	{
+		if (i >= 0)
+			return (1);
+		else
+			return (2);
+	}
+	if (f->space)
+	{
+		if (i >= 0)
+			return (3);
+		else
+			return (2);
+	}
+	if (i < 0)
+		return (2);
+	return (0);
+}
+
 int		ft_is_conversions(const char *str)
 {
 	int i;

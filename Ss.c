@@ -12,26 +12,6 @@
 
 #include "ft_printf.h"
 
-static	int ft_collect_for_s(char *s, t_flags *f)
-{
-	if (f->width && f->width > (int)ft_strlen(s))
-	{
-		if (f->minus)
-		{
-			ft_putstr(s);
-			ft_put_specific_char(' ', f->width - ft_strlen(s));
-		}
-		else
-		{
-			ft_put_specific_char(' ', f->width - ft_strlen(s));
-			ft_putstr(s);
-		}
-		return (f->width);
-	}
-	ft_putstr(s);
-	return (ft_strlen(s));
-}
-
 static	int	ft_collect_for_S(wchar_t *a, t_flags *f)
 {
 	if (f->width && f->width > ft_wstrlen(a))
@@ -51,6 +31,44 @@ static	int	ft_collect_for_S(wchar_t *a, t_flags *f)
 	return (ft_putwstr(a));
 }
 
+static char *ft_precision(char *s, t_flags *f)
+{
+	char *str;
+
+	if (f->precision && f->precision < (int)ft_strlen(s))
+		str = ft_strsub(s, 0, f->precision);
+	else
+		str = ft_strdup(s);
+	return (str);
+}
+
+static int	ft_collect_for_s(char *s, t_flags *f)
+{
+	char *str;
+	int	 len;
+
+	str = ft_precision(s, f);
+	len = ft_strlen(str);
+	if (f->width && f->width > len)
+	{
+		if (f->minus)
+		{
+			ft_putstr(str);
+			ft_put_specific_char(' ', f->width - len);
+		}
+		else
+		{
+			ft_put_specific_char(' ', f->width - len);
+			ft_putstr(str);
+		}
+		free(str);
+		return (f->width);
+	}
+	ft_putstr(str);
+	free(str);
+	return (len);
+}
+
 int	ft_Ss(va_list lst, char c, t_flags *f)
 {
 	char *s;
@@ -59,6 +77,11 @@ int	ft_Ss(va_list lst, char c, t_flags *f)
 	if (c == 's')
 	{
 		s = va_arg(lst, char*);
+		if (!s)
+		{
+			ft_putstr("(null)");
+			return (6);
+		}
 		return (ft_collect_for_s(s, f));
 	}
 	if (c == 'S')

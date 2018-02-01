@@ -12,80 +12,88 @@
 
 #include "ft_printf.h"
 
-static	int ft_plus_space(intmax_t i, t_flags *f)
-{
-	if (f->plus)
-	{
-		if (i >= 0)
-			ft_putchar('+');
-		else 
-			ft_putchar('-');
-		return (1);
-	}
-	if (f->space)
-	{
-		if (i >= 0)
-			ft_putchar(' ');
-		else
-			ft_putchar('-');
-		return (1);
-	}
-	if (i < 0)
-	{
-		ft_putchar('-');
-		return (1);
-	}
-	return (0);
-}
-
-static	void ft_width(intmax_t i, t_flags *f, int *width, int *width2)
-{
-	if (f->width && f->width > ft_count_len(i) && f->width > f->precision)
-	{
-		*width2 = f->width - f->precision;
-		*width = f->width - ft_count_len(i);
-		if (f->plus || f->space) 
-		{
-			(*width)--;
-			(*width2)--;
-		}
-		if (!f->minus)
-		{
-		if (!f->precision)
-			{	
-				if (f->zero)
-					ft_put_specific_char('0', *width);
-				else
-					ft_put_specific_char(' ', *width);
-			}
-		else
-			ft_put_specific_char(' ', *width2);
-		}
-	}
-}
-
-static int ft_collect_for_Ddi(intmax_t i, t_flags *f)
+static char *ft_precision(intmax_t i, char *num, char *str, t_flags *f)
 {
 	int len;
-	int width;
-	int width2;
+	int a;
 
-	width = 0;
-	width2 = 0;
-	ft_width(i, f, &width, &width2);
-	len = ft_plus_space(i, f);
+	len = 0;
+	a = f->precision - ft_count_len(i);
+	ft_plus_space(i, f) == 1 ? (str[len++] = '+') : (str[len] = '\0');
+	ft_plus_space(i, f) == 2 ? (str[len++] = '-') : (str[len] = '\0');
+	ft_plus_space(i, f) == 3 ? (str[len++] = ' ') : (str[len] = '\0');
+	while (a--)
+		str[len++] = '0';
+	while (*num)
+		str[len++] = *num++;
+	return (str);	
+}
+
+static	char *ft_precision_space_plus(intmax_t i, t_flags *f)
+{
+	char *str;
+	char *num;
+	int len;
+	int flag;
+
+	len = 0;
+	num = ft_itoa_10(i);
+	ft_plus_space(i, f) ? (flag = 1) : (flag = 0);
+	f->precision > ft_count_len(i) ? (str = ft_strnew(f->precision + flag)) :
+		(str = ft_strnew(ft_count_len(i) + flag));
 	if (f->precision && f->precision > ft_count_len(i))
+		return (ft_precision(i, num, str, f));
+	ft_plus_space(i, f) == 1 ? (str[len++] = '+') : (str[len] = '\0');
+	ft_plus_space(i, f) == 2 ? (str[len++] = '-') : (str[len] = '\0');
+	ft_plus_space(i, f) == 3 ? (str[len++] = ' ') : (str[len] = '\0');		
+	while (*num)
+		str[len++] = *num++;
+	return (str);
+}
+
+static	int ft_zero(int len, intmax_t i, t_flags *f)
+{
+	if (ft_plus_space(i, f))
 	{
-		ft_put_specific_char('0', f->precision - ft_count_len(i));
-		ft_putstr(ft_itoa_10(i));
-		if (f->minus)
-			ft_put_specific_char(' ', width2);
-		return (f->precision + len + width2);
+		if (ft_plus_space(i, f) == 1)
+				ft_putchar('+');
+		if (ft_plus_space(i, f) == 2)
+				ft_putchar('-');
+		if (ft_plus_space(i, f) == 3)
+				ft_putchar(' ');
 	}
+	ft_put_specific_char('0', f->width - len);
 	ft_putstr(ft_itoa_10(i));
+	return (f->width);
+}
+
+static	int ft_collect_for_Ddi(intmax_t i, t_flags *f)
+{
+	char *str;
+	int	 len;
+
+	str = ft_precision_space_plus(i, f);
+	len = ft_strlen(str);
+	if (f->width && f->width > len)
+	{
 		if (f->minus)
-			ft_put_specific_char(' ', width);
-	return (ft_count_len(i) + len + width); 
+		{
+			ft_putstr(str);
+			ft_put_specific_char(' ', f->width - len);
+		}
+		else if (f->zero && !f->precision)
+			return (ft_zero(len, i, f));
+		else
+		{
+			ft_put_specific_char(' ', f->width - len);
+			ft_putstr(str);
+		}
+		free(str);
+		return (f->width);
+	}
+	ft_putstr(str);
+	free(str);
+	return (len);
 }
 
 int ft_Ddi(va_list lst, char c, t_flags *f)
