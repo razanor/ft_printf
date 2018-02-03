@@ -12,7 +12,7 @@
 
 NAME := libftprintf.a
 
-SRC := 	ft_printf.c ft_itoa_10.c ft_itoa_unsigned.c auxiliary.c Cc.c Ss.c Ddi.c Uu.c Oo.c Xxp.c SsC_manipulation.c width_and_precision.c kostils.c percentage.c     
+SRC := 	ft_printf.c ft_itoa_10.c ft_itoa_unsigned.c auxiliary.c auxiliary2.c Cc.c Ss.c Ddi.c Uu.c Oo.c Xx.c p.c SsC_manipulation.c width_and_precision.c percentage.c     
 
 OBJ_DIR := obj
 

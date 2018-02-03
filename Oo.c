@@ -12,6 +12,13 @@
 
 #include "ft_printf.h"
 
+static int ft_zero(uintmax_t i, t_flags *f)
+{
+	ft_put_specific_char('0', f->width - ft_base_len(i, 8));
+	ft_putstr(ft_itoa_unsigned(i, 8));
+	return (f->width);
+}
+
 static char		*ft_precision_slash(uintmax_t i, t_flags *f)
 {
 	char *str;
@@ -38,13 +45,6 @@ static char		*ft_precision_slash(uintmax_t i, t_flags *f)
 	while (*num)
 		str[len++] = *num++;
 	return (str);
-}
-
-static int ft_zero(uintmax_t i, t_flags *f)
-{
-	ft_put_specific_char('0', f->width - ft_base_len(i, 8));
-	ft_putstr(ft_itoa_unsigned(i, 8));
-	return (f->width);
 }
 
 static	int ft_collect_for_Oo(uintmax_t i, t_flags *f)

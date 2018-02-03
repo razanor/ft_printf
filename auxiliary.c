@@ -12,6 +12,19 @@
 
 #include "ft_printf.h"
 
+void	ft_upper(char *str)
+{
+	int a;
+
+	a = 0;
+	while (str[a])
+	{
+		if (ft_isalpha(str[a]))
+			str[a] = ft_toupper(str[a]);
+		a++;
+	}
+}
+
 int		ft_conversions(char c)
 {
 	if (c == '%')

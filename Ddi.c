@@ -12,6 +12,22 @@
 
 #include "ft_printf.h"
 
+static	int ft_zero(int len, intmax_t i, t_flags *f)
+{
+	if (ft_plus_space(i, f))
+	{
+		if (ft_plus_space(i, f) == 1)
+				ft_putchar('+');
+		if (ft_plus_space(i, f) == 2)
+				ft_putchar('-');
+		if (ft_plus_space(i, f) == 3)
+				ft_putchar(' ');
+	}
+	ft_put_specific_char('0', f->width - len);
+	ft_putstr(ft_itoa_10(i));
+	return (f->width);
+}
+
 static char *ft_precision(intmax_t i, char *num, char *str, t_flags *f)
 {
 	int len;
@@ -49,22 +65,6 @@ static	char *ft_precision_space_plus(intmax_t i, t_flags *f)
 	while (*num)
 		str[len++] = *num++;
 	return (str);
-}
-
-static	int ft_zero(int len, intmax_t i, t_flags *f)
-{
-	if (ft_plus_space(i, f))
-	{
-		if (ft_plus_space(i, f) == 1)
-				ft_putchar('+');
-		if (ft_plus_space(i, f) == 2)
-				ft_putchar('-');
-		if (ft_plus_space(i, f) == 3)
-				ft_putchar(' ');
-	}
-	ft_put_specific_char('0', f->width - len);
-	ft_putstr(ft_itoa_10(i));
-	return (f->width);
 }
 
 static	int ft_collect_for_Ddi(intmax_t i, t_flags *f)
