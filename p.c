@@ -12,13 +12,36 @@
 
 #include "ft_printf.h"
 
+static	int	ft_collect_for_p(uintmax_t i, t_flags *f)
+{
+	int len;
+
+	len = ft_base_len(i, 16) + 2;
+	if (f->width && f->width > len)
+	{
+		if (f->minus)
+		{
+			ft_putstr("0x");
+			ft_putstr(ft_itoa_unsigned(i, 16));
+			ft_put_specific_char(' ', f->width - len);
+		}
+		else
+		{
+			ft_put_specific_char(' ', f->width - len);
+			ft_putstr("0x");
+			ft_putstr(ft_itoa_unsigned(i, 16));
+		}
+		return (f->width);
+	}
+	ft_putstr("0x");
+	ft_putstr(ft_itoa_unsigned(i, 16));
+	return (len);
+}
+
 int ft_p(va_list lst, t_flags *f)
 {
 	uintmax_t i;
 
-	f->width = 0; // для перевірки 
 	i = va_arg(lst, uintmax_t);
-	ft_putstr("0x");
-	ft_putstr(ft_itoa_unsigned(i, 16));
-	return (ft_base_len(i, 16) + 2);
+	return (ft_collect_for_p(i, f));
 }
