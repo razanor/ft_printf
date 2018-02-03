@@ -61,7 +61,10 @@ int ft_Uu(va_list lst, char c, t_flags *f)
 
 	i = va_arg(lst, uintmax_t);
 	if (c == 'u')
-		return (ft_collect_for_Uu((unsigned int)i, f)); 
+	{
+		ft_if_cast_flags(f) ? (i = ft_cast_to_unsigned(i, f)) : (i = (unsigned int)i);	
+		return (ft_collect_for_Uu(i, f)); 
+	}
 	if (c == 'U')
 		return (ft_collect_for_Uu(i, f));
 	return (0); 

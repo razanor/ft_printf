@@ -81,11 +81,17 @@ int		ft_is_conversions(const char *str)
 	return (0);
 }
 
-void	ft_zero_to_all(t_flags **f)
+void	ft_zero_to_all(t_flags *f)
 {
-	(*f)->slash = 0;
-	(*f)->minus = 0;
-	(*f)->plus = 0;
-	(*f)->space = 0;
-	(*f)->zero = 0;
+	f->slash = 0;
+	f->minus = 0;
+	f->plus = 0;
+	f->space = 0;
+	f->zero = 0;
+	f->hh = 0;
+	f->h = 0;
+	f->l = 0;
+	f->ll = 0;
+	f->j = 0;
+	f->z = 0;
 }

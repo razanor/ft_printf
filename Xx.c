@@ -109,5 +109,6 @@ int	ft_Xx(va_list lst, char c, t_flags *f)
 
 	a = 0;
 	i = va_arg(lst, uintmax_t);
-	return (ft_collect_for_Xx((unsigned int)i, f, c));
+	ft_if_cast_flags(f) ? (i = ft_cast_to_unsigned(i, f)) : (i = (unsigned int)i);	
+	return (ft_collect_for_Xx(i, f, c));
 }

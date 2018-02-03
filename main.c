@@ -17,9 +17,9 @@ int main(void)
 	int a;
 	int *d;
 
-	a = ft_printf("%-30p\n", d);
+	a = ft_printf("%lld\n", -9223372036854775808);
 	printf("%d\n", a);
-	a = printf("%-30p\n", d);
+	a = printf("%lld\n", -9223372036854775808);
 	printf("%d\n", a);
 
 	// wchar_t *c = L"Привет мир/Hello World";

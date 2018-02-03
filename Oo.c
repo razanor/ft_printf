@@ -82,7 +82,10 @@ int	ft_Oo(va_list lst, char c, t_flags *f)
 
 	i = va_arg(lst, uintmax_t);
 	if (c == 'o')
-		return (ft_collect_for_Oo((unsigned int)i, f));
+	{
+		ft_if_cast_flags(f) ? (i = ft_cast_to_unsigned(i, f)) : (i = (unsigned int)i);	
+		return (ft_collect_for_Oo(i, f));
+	}
 	if (c == 'O')
 		return (ft_collect_for_Oo(i, f));
 	return (0);
