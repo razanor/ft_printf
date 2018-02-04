@@ -17,6 +17,8 @@ int	ft_count_len(intmax_t a)
 	int i;
 
 	i = 1;
+	if (a < -9223372036854775807)
+		return (19);	
 	if (a < 0)	
 		a = -a;
 	if (a <= 9)
@@ -29,6 +31,22 @@ int	ft_count_len(intmax_t a)
 	return (i); 
 }
 
+static char *ft_too_big(int len, char *str)
+{
+	uintmax_t b;
+	
+	b = 9223372036854775808U;
+	str[len--] = '\0';
+	while (b > 9)
+	{
+		str[len] = b % 10 + 48;
+		b = b / 10;
+		len--;  
+	} 
+	str[len] = b + 48;
+	return (str);
+}
+
 char *ft_itoa_10(intmax_t n)
 {
 	char	*str;
@@ -37,6 +55,8 @@ char *ft_itoa_10(intmax_t n)
 	len = ft_count_len(n);
 	if (!(str = (char *)malloc(sizeof(char) * (len + 1))))
 		return (NULL);
+	if (n < -9223372036854775807)
+		return (ft_too_big(len, str));
 	if (n < 0)
 		n = -n;
 	str[len--] = '\0';
