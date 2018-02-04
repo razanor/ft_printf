@@ -61,16 +61,26 @@ static	int ft_collect_for_Oo(uintmax_t i, t_flags *f)
 			ft_putstr(str);
 			ft_put_specific_char(' ', f->width - len);
 		}
-		else if (f->zero && !f->precision)
+		else if (f->zero && !f->precision && !f->zero_precision)
 			return (ft_zero(i, f));
 		else
 		{
-			ft_put_specific_char(' ', f->width - len);
-			ft_putstr(str);
+			if (f->zero_precision && i == 0)
+			{
+				ft_put_specific_char(' ', f->width - len + 1);
+				return (f->width);
+			}
+			else
+			{
+				ft_put_specific_char(' ', f->width - len);
+				ft_putstr(str);
+			}
 		}
 		free(str);
 		return (f->width);
 	}
+	if (f->zero_precision && i == 0 && !f->slash)
+		return (0);
 	ft_putstr(str);
 	free(str);
 	return (len);
