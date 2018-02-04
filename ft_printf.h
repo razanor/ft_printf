@@ -29,6 +29,7 @@ typedef	struct s_flags
 	int 	zero;
 	int 	width;
 	int 	precision;
+	int     zero_precision;
 	int     hh;
 	int     h;
 	int     l;
@@ -67,6 +68,7 @@ void	ft_find_cast_flags(const char *str, t_flags *f);
 int		ft_if_cast_flags(t_flags *f);
 intmax_t ft_cast_to_signed(intmax_t i, t_flags *f);
 uintmax_t ft_cast_to_unsigned(uintmax_t i, t_flags *f);
+void	ft_zero_precision(const char *str, t_flags *f);
 
 
 #endif

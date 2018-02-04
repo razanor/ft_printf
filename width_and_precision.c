@@ -95,3 +95,17 @@ int		ft_check_precision(const char *str)
 	free(num);
 	return (j);
 }
+
+void	ft_zero_precision(const char *str, t_flags *f)
+{
+	int i;
+
+	i = 0;
+	f->zero_precision = 0;
+	while (str[i] && !(ft_conversions(str[i])))
+	{
+		if (str[i] == '.' && (!(ft_isdigit(str[i + 1])) || str[i + 1] == '0'))
+			f->zero_precision = 1;
+		i++;
+	}
+}

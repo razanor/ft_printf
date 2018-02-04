@@ -17,9 +17,9 @@ int main(void)
 	int a;
 	int *d;
 
-	a = ft_printf("%lld\n", -9223372036854775808);
+	a = ft_printf("@moulitest: %5.d %5.0d\n", 0, 0);
 	printf("%d\n", a);
-	a = printf("%lld\n", -9223372036854775808);
+	a = printf("@moulitest: %5.d %5.0d\n", 0, 0);
 	printf("%d\n", a);
 
 	// wchar_t *c = L"Привет мир/Hello World";

@@ -46,6 +46,7 @@ static	int ft_check_flags(const char **str, va_list lst)
 	n_precision ? (f->precision = n_precision) : (f->precision = 0);
 	ft_zero_to_all(f);
 	ft_find_cast_flags(*str, f);
+	ft_zero_precision(*str, f);
 	while (*str && ft_conversions(**str) == 0) 
 	{
 		ft_collect_flags(**str, f, &str, n_width);
