@@ -53,18 +53,18 @@ static int	ft_collect_for_s(char *s, t_flags *f)
 	{
 		if (f->minus)
 		{
-			ft_putstr(str);
+			write (1, str, len);
 			ft_put_specific_char(' ', f->width - len);
 		}
 		else
 		{
 			ft_put_specific_char(' ', f->width - len);
-			ft_putstr(str);
+			write (1, str, len);
 		}
 		free(str);
 		return (f->width);
 	}
-	ft_putstr(str);
+	write (1, str, len);
 	free(str);
 	return (len);
 }

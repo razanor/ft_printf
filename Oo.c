@@ -51,7 +51,7 @@ static int ft_width(intmax_t i, int len, char *str, t_flags *f)
 {
 	if (f->minus)
 	{
-		ft_putstr(str);
+		write (1, str, len);
 		ft_put_specific_char(' ', f->width - len);
 	}
 	else if (f->zero && !f->precision && !f->zero_precision)
@@ -64,7 +64,7 @@ static int ft_width(intmax_t i, int len, char *str, t_flags *f)
 	else
 	{
 		ft_put_specific_char(' ', f->width - len);
-		ft_putstr(str);
+		write (1, str, len);
 	}
 	free(str);
 	return (f->width);
@@ -81,7 +81,7 @@ static	int ft_collect_for_Oo(uintmax_t i, t_flags *f)
 		return (ft_width(i, len, str, f));
 	if (f->zero_precision && i == 0 && !f->slash)
 		return (0);
-	ft_putstr(str);
+	write (1, str, len);
 	free(str);
 	return (len);
 }

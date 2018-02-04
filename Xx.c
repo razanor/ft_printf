@@ -80,7 +80,7 @@ static int ft_width(intmax_t i, char *str, t_flags *f, char c)
 	len = ft_strlen(str);
 	if (f->minus)
 	{
-		ft_putstr(str);
+		write (1, str, len);
 		ft_put_specific_char(' ', f->width - len);
 	}
 	else if (f->zero && !f->precision && !f->zero_precision)
@@ -93,7 +93,7 @@ static int ft_width(intmax_t i, char *str, t_flags *f, char c)
 	else
 	{
 		ft_put_specific_char(' ', f->width - len);
-		ft_putstr(str);
+		write (1, str, len);
 	}
 	free(str);
 	return (f->width);
@@ -107,34 +107,10 @@ static int ft_collect_for_Xx(uintmax_t i, t_flags *f, char c)
 	str = ft_precision_slash(i, f, c);
 	len = ft_strlen(str);
 	if (f->width && f->width > len)
-	{
 		return (ft_width(i, str, f, c));
-		// if (f->minus)
-		// {
-		// 	ft_putstr(str);
-		// 	ft_put_specific_char(' ', f->width - len);
-		// }
-		// else if (f->zero && !f->precision && !f->zero_precision)
-		// 	return (ft_zero(len, i, f, c));
-		// else
-		// {
-		// 	if (f->zero_precision && i == 0)
-		// 	{
-		// 		ft_put_specific_char(' ', f->width - len + 1);
-		// 		return (f->width);
-		// 	}
-		// 	else
-		// 	{
-		// 		ft_put_specific_char(' ', f->width - len);
-		// 		ft_putstr(str);
-		// 	}
-		// }
-		// free(str);
-		// return (f->width);
-	}
 	if (f->zero_precision && i == 0)
 		return (0);
-	ft_putstr(str);
+	write (1, str, len);
 	free(str);
 	return (len);
 }
