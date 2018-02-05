@@ -6,3 +6,4 @@ obj
 .idea/
 CMakeLists.txt
 cmake-build-debug/
+a.out.dSYM/

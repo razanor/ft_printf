@@ -37,6 +37,7 @@ static int ft_collect_for_Uu(uintmax_t i, t_flags *f)
 {
 	int width;
 	int width2;
+	char *str;
 
 	width = 0;
 	width2 = 0;
@@ -49,9 +50,11 @@ static int ft_collect_for_Uu(uintmax_t i, t_flags *f)
 			ft_put_specific_char(' ', width2);
 		return (f->precision + width2);
 	}
-	ft_putstr(ft_itoa_unsigned(i, 10));
-		if (f->minus)
-			ft_put_specific_char(' ', width);
+	str = ft_itoa_unsigned(i, 10);
+	ft_putstr(str);
+	ft_strdel(&str);
+	if (f->minus)
+		ft_put_specific_char(' ', width);
 	return (ft_base_len(i, 10) + width); 
 }
 
