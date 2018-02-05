@@ -45,16 +45,16 @@ static int ft_collect_for_Uu(uintmax_t i, t_flags *f)
 	if (f->precision && f->precision > ft_base_len(i, 10))
 	{
 		ft_put_specific_char('0', f->precision - ft_base_len(i, 10));
-		ft_putstr(ft_itoa_unsigned(i, 10));
+		ft_putstr(str = ft_itoa_unsigned(i, 10));
 		if (f->minus)
 			ft_put_specific_char(' ', width2);
+		ft_strdel(&str);
 		return (f->precision + width2);
 	}
-	str = ft_itoa_unsigned(i, 10);
-	ft_putstr(str);
-	ft_strdel(&str);
+	ft_putstr(str = ft_itoa_unsigned(i, 10));
 	if (f->minus)
 		ft_put_specific_char(' ', width);
+	ft_strdel(&str);
 	return (ft_base_len(i, 10) + width); 
 }
 

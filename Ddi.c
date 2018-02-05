@@ -14,6 +14,8 @@
 
 static	int ft_zero(int len, intmax_t i, t_flags *f)
 {
+	char *str;
+
 	if (ft_plus_space(i, f))
 	{
 		if (ft_plus_space(i, f) == 1)
@@ -24,7 +26,8 @@ static	int ft_zero(int len, intmax_t i, t_flags *f)
 				ft_putchar(' ');
 	}
 	ft_put_specific_char('0', f->width - len);
-	ft_putstr(ft_itoa_10(i));
+	ft_putstr(str = ft_itoa_10(i));
+	ft_strdel(&str);
 	return (f->width);
 }
 

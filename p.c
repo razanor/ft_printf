@@ -15,6 +15,7 @@
 static	int	ft_collect_for_p(uintmax_t i, t_flags *f)
 {
 	int len;
+	char *str;
 
 	len = ft_base_len(i, 16) + 2;
 	if (f->width && f->width > len)
@@ -22,19 +23,21 @@ static	int	ft_collect_for_p(uintmax_t i, t_flags *f)
 		if (f->minus)
 		{
 			ft_putstr("0x");
-			ft_putstr(ft_itoa_unsigned(i, 16));
+			ft_putstr(str = ft_itoa_unsigned(i, 16));
 			ft_put_specific_char(' ', f->width - len);
 		}
 		else
 		{
 			ft_put_specific_char(' ', f->width - len);
 			ft_putstr("0x");
-			ft_putstr(ft_itoa_unsigned(i, 16));
+			ft_putstr(str = ft_itoa_unsigned(i, 16));
 		}
+		ft_strdel(&str);
 		return (f->width);
 	}
 	ft_putstr("0x");
-	ft_putstr(ft_itoa_unsigned(i, 16));
+	ft_putstr(str = ft_itoa_unsigned(i, 16));
+	ft_strdel(&str);
 	return (len);
 }
 

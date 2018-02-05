@@ -41,7 +41,6 @@ static	int ft_check_flags(const char **str, va_list lst)
 
 	n_width = ft_check_width(*str);
 	n_precision = ft_check_precision(*str);
-//	f = (t_flags *)malloc(sizeof(t_flags));
 	n_width ? (f.width = n_width) : (f.width = 0);
 	n_precision ? (f.precision = n_precision) : (f.precision = 0);
 	ft_zero_to_all(&f);
@@ -52,7 +51,6 @@ static	int ft_check_flags(const char **str, va_list lst)
 		ft_collect_flags(**str, &f, &str, n_width);
 		(*str)++; 
 	}
-
 	return (ft_check_which(**str, lst, &f));
 }
 

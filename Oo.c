@@ -14,8 +14,11 @@
 
 static int ft_zero(uintmax_t i, t_flags *f)
 {
+	char *str;
+
 	ft_put_specific_char('0', f->width - ft_base_len(i, 8));
-	ft_putstr(ft_itoa_unsigned(i, 8));
+	ft_putstr(str = ft_itoa_unsigned(i, 8));
+	ft_strdel(&str);
 	return (f->width);
 }
 
