@@ -19,12 +19,11 @@ int main(void)
 	int a;
 	int *d;
 
-	a = ft_printf("% Zoooo");
+	wchar_t *c = NULL;
+	setlocale(LC_ALL, " ");
+	a = ft_printf("%S", c);
 	printf("%d\n", a);
-	a = printf("% +-Zoooo");
+	a = printf("%S", c);
 	printf("%d\n", a);
-
-//	// wchar_t *c = L"Привет мир/Hello World";
-//	// setlocale(LC_ALL
 	return (0);
 }

@@ -88,8 +88,12 @@ int	ft_Ss(va_list lst, char c, t_flags *f)
 	if (c == 'S')
 	{
 		a = va_arg(lst, wchar_t*);
+		if (!a)
+		{
+			ft_putstr("(null)");
+			return (6);
+		}
 		return (ft_collect_for_S(a, f));
 	}
-
 	return (1);
 }
