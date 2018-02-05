@@ -66,6 +66,7 @@ static int	ft_collect_for_s(char *s, t_flags *f)
 	}
 	write (1, str, len);
 	ft_strdel(&str);
+
 	return (len);
 }
 
@@ -89,5 +90,6 @@ int	ft_Ss(va_list lst, char c, t_flags *f)
 		a = va_arg(lst, wchar_t*);
 		return (ft_collect_for_S(a, f));
 	}
+
 	return (1);
 }

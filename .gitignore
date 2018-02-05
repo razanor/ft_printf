@@ -1,2 +1,9 @@
 obj
 .DS_Store
+*.o
+*.a
+
+.idea/
+CMakeLists.txt
+cmake-build-debug/
+a.out.dSYM/

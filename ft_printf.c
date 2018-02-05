@@ -35,24 +35,25 @@ static int ft_check_which(char c, va_list lst, t_flags *f)
 
 static	int ft_check_flags(const char **str, va_list lst)
 {
-	t_flags *f;
+	t_flags f;
 	int n_width;
 	int n_precision;
 
 	n_width = ft_check_width(*str);
 	n_precision = ft_check_precision(*str);
-	f = (t_flags *)malloc(sizeof(t_flags));
-	n_width ? (f->width = n_width) : (f->width = 0);
-	n_precision ? (f->precision = n_precision) : (f->precision = 0);
-	ft_zero_to_all(f);
-	ft_find_cast_flags(*str, f);
-	ft_zero_precision(*str, f);
+//	f = (t_flags *)malloc(sizeof(t_flags));
+	n_width ? (f.width = n_width) : (f.width = 0);
+	n_precision ? (f.precision = n_precision) : (f.precision = 0);
+	ft_zero_to_all(&f);
+	ft_find_cast_flags(*str, &f);
+	ft_zero_precision(*str, &f);
 	while (*str && ft_conversions(**str) == 0) 
 	{
-		ft_collect_flags(**str, f, &str, n_width);
+		ft_collect_flags(**str, &f, &str, n_width);
 		(*str)++; 
 	}
-	return (ft_check_which(**str, lst, f));
+
+	return (ft_check_which(**str, lst, &f));
 }
 
 static int ft_core(const char *str, va_list lst)
@@ -90,6 +91,7 @@ int	ft_printf(const char *str, ...)
 	int i;
 
 	va_start(lst, str);
+
 	i = ft_core(str, lst);
 	va_end(lst);
 	return (i);
