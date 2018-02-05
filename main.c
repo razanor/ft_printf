@@ -12,17 +12,22 @@
 
 #include "ft_printf.h"
 
+#define MACRO "%s\n", "Hello, World!"
+
 int main(void)
 {
 	int a;
 	int *d;
+//
+//	a = ft_printf("%.6o", 15);
+//	printf("%d\n", a);
+//	a = printf("@moulitest: %#.o %#.0o\n", 0, 0);
+//	printf("%d\n", a);
+//
+//	// wchar_t *c = L"Привет мир/Hello World";
+//	// setlocale(LC_ALL, "");
 
-	a = ft_printf("%.6o", 15);
-	printf("%d\n", a);
-	a = printf("@moulitest: %#.o %#.0o\n", 0, 0);
-	printf("%d\n", a);
+	printf("sy - %d\nmy - %d\n", printf(MACRO), ft_printf(MACRO));
 
-	// wchar_t *c = L"Привет мир/Hello World";
-	// setlocale(LC_ALL, "");
 	return (0);
 }
