@@ -66,7 +66,7 @@ int		ft_check_width(const char *str)
 	}
 	num[j] = '\0';
 	j = ft_atoi(num);
-	free(num);
+	ft_strdel(&num);
 	return (j);
 }
 
@@ -92,7 +92,7 @@ int		ft_check_precision(const char *str)
 	}
 	num[j] = '\0';
 	j = ft_atoi(num);
-	free(num);
+	ft_strdel(&num);
 	return (j);
 }
 

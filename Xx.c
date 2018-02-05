@@ -22,7 +22,8 @@ static int ft_zero(int len, uintmax_t i, t_flags *f, char c)
 	if (flag)
 		c == 'X' ? (ft_putstr("0X")) : (ft_putstr("0x"));
 	ft_put_specific_char('0', f->width - len);
-	ft_putstr(str);
+	write(1, str, ft_strlen(str));
+	ft_strdel(&str);
 	return (f->width); 
 }
 
@@ -44,8 +45,10 @@ static char *ft_precision(uintmax_t i, char *str, t_flags *f, char c)
 	}
 	while (a--)
 		str[len++] = '0';
-	while (*num)
-		str[len++] = *num++;
+	a = 0;
+	while (num[a])
+		str[len++] = num[a++];
+	ft_strdel(&num);
 	return (str);
 }
 
@@ -55,8 +58,10 @@ static char *ft_precision_slash(uintmax_t i, t_flags *f, char c)
 	char *num;
 	int  len;
 	int  flag;
+	int  a;
 
 	len = 0;
+	a = 0;
 	(c == 'X') ? (ft_upper(num = ft_itoa_unsigned(i, 16))) : (num = ft_itoa_unsigned(i, 16));
 	(f->slash && i) ? (flag = 2) : (flag = 0);
 	f->precision > ft_base_len(i, 16) ? (str = ft_strnew(f->precision + flag)) :
@@ -68,34 +73,39 @@ static char *ft_precision_slash(uintmax_t i, t_flags *f, char c)
 		str[len++] = '0';
 		c == 'X' ? (str[len++] = 'X') : (str[len++] = 'x');
 	}
-	while (*num)
-		str[len++] = *num++;
+	while (num[a])
+		str[len++] = num[a++];
+	ft_strdel(&num);
 	return (str);
 }
 
-static int ft_width(intmax_t i, char *str, t_flags *f, char c)
+static int ft_width(intmax_t i, char **str, t_flags *f, char c)
 {
 	int len;
 
-	len = ft_strlen(str);
+	len = ft_strlen(*str);
 	if (f->minus)
 	{
-		write (1, str, len);
+		write (1, *str, len);
 		ft_put_specific_char(' ', f->width - len);
 	}
 	else if (f->zero && !f->precision && !f->zero_precision)
+	{
+		ft_strdel(&(*str));
 		return (ft_zero(len, i, f, c));
+	}
 	else if (f->zero_precision && i == 0)
 	{
+		ft_strdel(&(*str));
 		ft_put_specific_char(' ', f->width - len + 1);
 		return (f->width);
 	}
 	else
 	{
 		ft_put_specific_char(' ', f->width - len);
-		write (1, str, len);
+		write (1, *str, len);
 	}
-	free(str);
+	ft_strdel(&(*str));
 	return (f->width);
 }
 
@@ -107,11 +117,14 @@ static int ft_collect_for_Xx(uintmax_t i, t_flags *f, char c)
 	str = ft_precision_slash(i, f, c);
 	len = ft_strlen(str);
 	if (f->width && f->width > len)
-		return (ft_width(i, str, f, c));
+		return (ft_width(i, &str, f, c));
 	if (f->zero_precision && i == 0)
+	{
+		ft_strdel(&str);
 		return (0);
+	}
 	write (1, str, len);
-	free(str);
+	ft_strdel(&str);
 	return (len);
 }
 

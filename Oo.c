@@ -37,36 +37,44 @@ static char		*ft_precision_slash(uintmax_t i, t_flags *f)
 		a = f->precision - ft_base_len(i, 8);
 		while (a--)
 			str[len++] = '0';
-		while (*num)
-			str[len++] = *num++;
+		a = 0;
+		while (num[a])
+			str[len++] = num[a++];
+		ft_strdel(&num);
 		return (str);
 	}
 	(flag == 1) ? (str[len++] = '0') : (str[len] = '\0');
-	while (*num)
-		str[len++] = *num++;
+	a = 0;
+	while (num[a])
+		str[len++] = num[a++];
+	ft_strdel(&num);
 	return (str);
 }
 
-static int ft_width(intmax_t i, int len, char *str, t_flags *f)
+static int ft_width(intmax_t i, int len, char **str, t_flags *f)
 {
 	if (f->minus)
 	{
-		write (1, str, len);
+		write (1, *str, len);
 		ft_put_specific_char(' ', f->width - len);
 	}
 	else if (f->zero && !f->precision && !f->zero_precision)
+	{
+		ft_strdel(&(*str));
 		return (ft_zero(i, f));
+	}
 	else if (f->zero_precision && i == 0)
 	{
+		ft_strdel(&(*str));
 		ft_put_specific_char(' ', f->width - len + 1);
 		return (f->width);
 	}
 	else
 	{
 		ft_put_specific_char(' ', f->width - len);
-		write (1, str, len);
+		write (1, *str, len);
 	}
-	free(str);
+	ft_strdel(&(*str));
 	return (f->width);
 }
 
@@ -78,11 +86,14 @@ static	int ft_collect_for_Oo(uintmax_t i, t_flags *f)
 	str = ft_precision_slash(i, f);
 	len = ft_strlen(str);
 	if (f->width && f->width > len)
-		return (ft_width(i, len, str, f));
+		return (ft_width(i, len, &str, f));
 	if (f->zero_precision && i == 0 && !f->slash)
+	{
+		ft_strdel(&str);
 		return (0);
+	}
 	write (1, str, len);
-	free(str);
+	ft_strdel(&str);
 	return (len);
 }
 	

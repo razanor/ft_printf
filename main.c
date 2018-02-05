@@ -17,7 +17,7 @@ int main(void)
 	int a;
 	int *d;
 
-	a = ft_printf("@moulitest: %#.o %#.0o\n", 0, 0);
+	a = ft_printf("%.6o", 15);
 	printf("%d\n", a);
 	a = printf("@moulitest: %#.o %#.0o\n", 0, 0);
 	printf("%d\n", a);

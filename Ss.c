@@ -61,11 +61,11 @@ static int	ft_collect_for_s(char *s, t_flags *f)
 			ft_put_specific_char(' ', f->width - len);
 			write (1, str, len);
 		}
-		free(str);
+		ft_strdel(&str);
 		return (f->width);
 	}
 	write (1, str, len);
-	free(str);
+	ft_strdel(&str);
 	return (len);
 }
 
