@@ -28,6 +28,6 @@ int main(void)
 //	// setlocale(LC_ALL, "");
 
 	printf("sy - %d\nmy - %d\n", printf(MACRO), ft_printf(MACRO));
-
+while(42){}
 	return (0);
 }
