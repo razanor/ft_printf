@@ -70,8 +70,11 @@ static int ft_core(const char *str, va_list lst)
 			{	
 				len = len + ft_check_flags(&str, lst);
 				str++;
-				i--;
 			}
+			else
+				while (*str == '#' || *str == '0' || *str == '-' || *str == ' ' || *str == '+')
+					str++;
+			i--;
 		}
 		else
 		{
@@ -89,7 +92,6 @@ int	ft_printf(const char *str, ...)
 	int i;
 
 	va_start(lst, str);
-
 	i = ft_core(str, lst);
 	va_end(lst);
 	return (i);

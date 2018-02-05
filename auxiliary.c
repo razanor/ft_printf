@@ -74,8 +74,15 @@ int		ft_is_conversions(const char *str)
 	i = 0;
 	while (str[i])
 	{
-		if ((ft_conversions(str[i])))
-			return (1);
+		while (str[i] == 'h' || str[i] == 'l' || str[i] == 'j' || str[i] == 'z')
+			i++;
+		if ((ft_isalpha(str[i]) || str[i] == '%'))
+		{ 
+			if (ft_conversions(str[i]))
+				return (1);
+			else
+				break ; 
+		}
 		i++;
 	}
 	return (0);
