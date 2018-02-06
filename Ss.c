@@ -77,6 +77,8 @@ int	ft_Ss(va_list lst, char c, t_flags *f)
 
 	if (c == 's')
 	{
+		if (ft_if_cast_flags(f))
+			return (ft_collect_for_S((va_arg(lst, wchar_t*)), f));
 		s = va_arg(lst, char*);
 		if (!s)
 		{

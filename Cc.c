@@ -58,6 +58,8 @@ int ft_Cc(va_list lst, char c, t_flags *f)
 
 	if (c == 'c')
 	{
+		if (ft_if_cast_flags(f))
+			return (ft_collect_for_C(va_arg(lst, wchar_t), f));
 		i = va_arg(lst, int);
 		return (ft_collect_for_c(i, f));
 	}
