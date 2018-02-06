@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-// #include <locale.h>
+#include <locale.h>
 
 #define MACRO "%d\n", 200
 
@@ -19,10 +19,10 @@ int main(void)
 {
 	int a;
 	int *d;
-	setlocale(LC_ALL, " ");
-	a = ft_printf("%4.s\n", "42");
+	setlocale(LC_ALL, "");
+	a = ft_printf("%3.S\n", L"Привет");
 	printf("%d\n", a);
-	a = printf("%4.s\n", "42");
+	a = printf("%3.S\n", L"Привет");
 	printf("%d\n", a);
 	
 	// wchar_t c = L'暖';

@@ -12,23 +12,98 @@
 
 #include "ft_printf.h"
 
+static wchar_t *ft_strwsub(wchar_t *s, unsigned int start, unsigned int len)
+{
+	unsigned int i;
+	wchar_t *sub;
+
+	i = 0;
+	if (!(sub = (wchar_t *)malloc(sizeof(wchar_t) * (len + 1))))
+		return (NULL);
+	while (s[start] && i < len)
+	{
+		sub[i] = s[start];
+		i++;
+		start++;
+	}
+	sub[i] = '\0';
+	return (sub);
+}
+
+static wchar_t *ft_strwdup(wchar_t *s)
+{
+	wchar_t *str;
+	int i;
+	int len;
+
+	len = ft_wstrlen(s);
+	i = 0;
+	if (!(str = (wchar_t *)malloc(sizeof(wchar_t) * (len + 1))))
+		return (NULL);
+	while (i < len)
+	{
+		str[i] = s[i];
+		i++;
+	} 
+	str[i] = '\0';
+	return (str);
+}
+
+static wchar_t *ft_precision_S(wchar_t *a, t_flags *f)
+{
+	int size;
+	int b;
+	wchar_t *str;
+
+	b = 0;
+	while (b[a])
+		b++;
+	if (b)
+		size = ft_wstrlen(a) / b;
+	if (f->precision && f->precision < ft_wstrlen(a))
+		str = ft_strwsub(a, 0, f->precision / size);
+	else
+		str = ft_strwdup(a);
+	return (str);
+}
+
 static	int	ft_collect_for_S(wchar_t *a, t_flags *f)
 {
-	if (f->width && f->width > ft_wstrlen(a))
+	wchar_t *str;
+	int len;
+
+	str = ft_precision_S(a, f);
+	len = ft_wstrlen(str);
+	if (f->width && f->width > ft_wstrlen(str))
 	{
 		if (f->minus)
 		{
-			ft_putwstr(a);
-			ft_put_specific_char(' ', f->width - ft_wstrlen(a));
+			ft_putwstr(str);
+			ft_put_specific_char(' ', f->width - ft_wstrlen(str));
 		}
+		else if (f->zero)
+		{
+			ft_put_specific_char('0', f->width - ft_wstrlen(str));
+			ft_putwstr(str);
+		}
+		else if (f->zero_precision)
+			ft_put_specific_char(' ', f->width);
 		else
 		{
-			ft_put_specific_char(' ', f->width - ft_wstrlen(a));
-			ft_putwstr(a);
+			ft_put_specific_char(' ', f->width - ft_wstrlen(str));
+			ft_putwstr(str);
 		}
+		free(str);
 		return (f->width);
 	}
-	return (ft_putwstr(a));
+	if (f->zero_precision)
+	{
+		free(str);
+		ft_put_specific_char(' ', f->width);
+		return (f->width);
+	}
+	free(str);
+	return (ft_putwstr(str));
 }
 
 static char *ft_precision(char *s, t_flags *f)
@@ -68,6 +143,12 @@ static int	ft_collect_for_s(char *s, t_flags *f)
 			ft_put_specific_char(' ', f->width - len);
 			write (1, str, len);
 		}
+		ft_strdel(&str);
+		return (f->width);
+	}
+	if (f->zero_precision)
+	{
+		ft_put_specific_char(' ', f->width);
 		ft_strdel(&str);
 		return (f->width);
 	}
