@@ -20,9 +20,9 @@ int main(void)
 	int a;
 	int *d;
 	setlocale(LC_ALL, "");
-	a = ft_printf("%3.S\n", L"Привет");
+	a = ft_printf("%jhd", 9223372036854775807);
 	printf("%d\n", a);
-	a = printf("%3.S\n", L"Привет");
+	a = printf("%jhd", 9223372036854775807);
 	printf("%d\n", a);
 	
 	// wchar_t c = L'暖';

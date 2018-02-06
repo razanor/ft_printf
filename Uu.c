@@ -12,50 +12,136 @@
 
 #include "ft_printf.h"
 
-static	void ft_width(uintmax_t i, t_flags *f, int *width, int *width2)
+// static	void ft_width(uintmax_t i, t_flags *f, int *width, int *width2)
+// {
+// 	if (f->width && f->width > ft_base_len(i, unsigned) && f->width > f->precision)
+// 	{
+// 		*width2 = f->width - f->precision;
+// 		*width = f->width - ft_base_len(i, unsigned);
+// 		if (!f->minus)
+// 		{
+// 		if (!f->precision)
+// 			{	
+// 				if (f->zero)
+// 					ft_put_specific_char('0', *width);
+// 				else
+// 					ft_put_specific_char(' ', *width);
+// 			}
+// 		else
+// 			ft_put_specific_char(' ', *width2);
+// 		}
+// 	}
+// }
+
+// static int ft_collect_for_Uu(uintmax_t i, t_flags *f)
+// {
+// 	int width;
+// 	int width2;
+// 	char *str;
+
+// 	width = 0;
+// 	width2 = 0;
+// 	ft_width(i, f, &width, &width2);
+// 	if (f->precision && f->precision > ft_base_len(i, unsigned))
+// 	{
+// 		ft_put_specific_char('0', f->precision - ft_base_len(i, unsigned));
+// 		ft_putstr(str = ft_itoa_unsigned(i, unsigned));
+// 		if (f->minus)
+// 			ft_put_specific_char(' ', width2);
+// 		ft_strdel(&str);
+// 		return (f->precision + width2);
+// 	}
+// 	ft_putstr(str = ft_itoa_unsigned(i, unsigned));
+// 	if (f->minus)
+// 		ft_put_specific_char(' ', width);
+// 	ft_strdel(&str);
+// 	return (ft_base_len(i, unsigned) + width); 
+// }
+
+static	int ft_zero(uintmax_t i, t_flags *f, int len)
 {
-	if (f->width && f->width > ft_base_len(i, 10) && f->width > f->precision)
+	char *str;
+
+	ft_put_specific_char('0', f->width - len);
+	ft_putstr(str = ft_itoa_unsigned(i, 10));
+	ft_strdel(&str);
+	return (f->width);
+}
+
+static	char *ft_precision(uintmax_t i, t_flags *f)
+{
+	char *str;
+	char *num;
+	int len;
+	int b;
+	int a;
+
+	len = 0;
+	b = 0;
+	num = ft_itoa_unsigned(i, 10);
+	f->precision > ft_base_len(i, 10) ? (str = ft_strnew(f->precision)) :
+		(str = ft_strnew(ft_base_len(i, 10)));
+	if (f->precision && f->precision > ft_base_len(i, 10))
 	{
-		*width2 = f->width - f->precision;
-		*width = f->width - ft_base_len(i, 10);
-		if (!f->minus)
-		{
-		if (!f->precision)
-			{	
-				if (f->zero)
-					ft_put_specific_char('0', *width);
-				else
-					ft_put_specific_char(' ', *width);
-			}
-		else
-			ft_put_specific_char(' ', *width2);
-		}
+		a = f->precision - ft_base_len(i, 10);
+		while (a--)
+			str[len++] = '0';
+		a = 0;
+		while (num[a])
+			str[len++] = num[a++];
+		ft_strdel(&num);
+		return (str);	
 	}
+	while (num[b])
+		str[len++] = num[b++];
+	ft_strdel(&num);
+	return (str);
+}
+
+static int ft_width(uintmax_t i, int len, char **str, t_flags *f)
+{
+	if (f->minus)
+	{
+		write (1, *str, len);
+		ft_put_specific_char(' ', f->width - len);
+	}
+	else if (f->zero && !f->precision && !f->zero_precision)
+	{
+		ft_strdel(&(*str));
+		return (ft_zero(i, f, len));
+	}
+	else if (f->zero_precision && i == 0)
+	{
+		ft_strdel(&(*str));
+		ft_put_specific_char(' ', f->width - len + 1);
+		return (f->width);
+	}
+	else
+	{
+		ft_put_specific_char(' ', f->width - len);
+		write (1, *str, len);
+	}
+	ft_strdel(&(*str));
+	return (f->width);
 }
 
 static int ft_collect_for_Uu(uintmax_t i, t_flags *f)
 {
-	int width;
-	int width2;
 	char *str;
+	int	 len;
 
-	width = 0;
-	width2 = 0;
-	ft_width(i, f, &width, &width2);
-	if (f->precision && f->precision > ft_base_len(i, 10))
+	str = ft_precision(i, f);
+	len = ft_strlen(str);
+	if (f->width && f->width > len)
+		return (ft_width(i, len, &str, f));
+	if (f->zero_precision && i == 0)
 	{
-		ft_put_specific_char('0', f->precision - ft_base_len(i, 10));
-		ft_putstr(str = ft_itoa_unsigned(i, 10));
-		if (f->minus)
-			ft_put_specific_char(' ', width2);
 		ft_strdel(&str);
-		return (f->precision + width2);
+		return (0);
 	}
-	ft_putstr(str = ft_itoa_unsigned(i, 10));
-	if (f->minus)
-		ft_put_specific_char(' ', width);
+	write (1, str, len);
 	ft_strdel(&str);
-	return (ft_base_len(i, 10) + width); 
+	return (len);
 }
 
 int ft_Uu(va_list lst, char c, t_flags *f)

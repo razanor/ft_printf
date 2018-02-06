@@ -43,20 +43,22 @@ void	ft_find_cast_flags(const char *str, t_flags *f)
 	i = 0;
 	while (str[i] && !(ft_conversions(str[i])))
 	{
-		if (str[i] == 'h' && str[i + 1] == 'h')
-		{
-			f->hh = 1;
-			return ;
-		}
 		if (str[i] == 'l' && str[i + 1] == 'l')
 		{
 			f->ll = 1;
-			return ;
+			i = i + 2;
+			//return ;
 		}
-		if (str[i] == 'h')
-			f->h = 1;
+		if (str[i] == 'h' && str[i + 1] == 'h')
+		{
+			f->hh = 1;
+			i = i + 2;
+			//return ;
+		}
 		if (str[i] == 'l')
 			f->l = 1;
+		if (str[i] == 'h')
+			f->h = 1;
 		if (str[i] == 'j')
 			f->j = 1;
 		if (str[i] == 'z')
@@ -74,34 +76,34 @@ int		ft_if_cast_flags(t_flags *f)
 
 intmax_t ft_cast_to_signed(intmax_t i, t_flags *f)
 {
-	if (f->hh)
-		return ((char)i);
-	if (f->ll)
-		return ((long long)i);
-	if (f->h)
-		return ((short)i);
-	if (f->l)
-		return ((long)i);
-	if (f->j)
-		return ((intmax_t)i);
 	if (f->z)
 		return ((size_t)i);
+	if (f->j)
+		return ((intmax_t)i);
+	if (f->ll)
+		return ((long long)i);
+	if (f->l)
+		return ((long)i);
+	if (f->h)
+		return ((short)i);
+	if (f->hh)
+		return ((char)i);
 	return (0);
 }
 
 uintmax_t ft_cast_to_unsigned(uintmax_t i, t_flags *f)
 {
-	if (f->hh)
-		return ((unsigned char)i);
-	if (f->ll)
-		return ((unsigned long long)i);
-	if (f->h)
-		return ((unsigned short)i);
-	if (f->l)
-		return ((unsigned long)i);
-	if (f->j)
-		return ((uintmax_t)i);
 	if (f->z)
 		return ((size_t)i);
+	if (f->j)
+		return ((uintmax_t)i);
+	if (f->ll)
+		return ((unsigned long long)i);
+	if (f->l)
+		return ((unsigned long)i);
+	if (f->h)
+		return ((unsigned short)i);
+	if (f->hh)
+		return ((unsigned char)i);
 	return (0);
 }

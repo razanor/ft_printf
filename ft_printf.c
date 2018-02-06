@@ -72,7 +72,7 @@ static int ft_core(const char *str, va_list lst)
 				str++;
 			}
 			else
-				while (*str == '#' || *str == '0' || *str == '-' || *str == ' ' || *str == '+')
+				while (*str == '#' || *str == '0' || *str == '-' || *str == ' ' || *str == '+' || *str == 'h' || *str == 'l' || *str == 'j' || *str == 'z')
 					str++;
 			i--;
 		}

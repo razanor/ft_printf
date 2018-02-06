@@ -26,6 +26,12 @@ static	int	ft_collect_for_p(uintmax_t i, t_flags *f)
 			ft_putstr(str = ft_itoa_unsigned(i, 16));
 			ft_put_specific_char(' ', f->width - len);
 		}
+		else if (f->zero)
+		{
+			ft_putstr("0x");
+			ft_put_specific_char('0', f->width - len);
+			ft_putstr(str = ft_itoa_unsigned(i, 16));
+		}
 		else
 		{
 			ft_put_specific_char(' ', f->width - len);

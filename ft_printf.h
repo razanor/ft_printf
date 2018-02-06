@@ -16,8 +16,6 @@
 # include <stdarg.h>
 # include <wchar.h>
 # include <inttypes.h>
-
-#include <locale.h>
 #include <stdio.h>
 
 typedef	struct s_flags
