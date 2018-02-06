@@ -12,52 +12,6 @@
 
 #include "ft_printf.h"
 
-// static	void ft_width(uintmax_t i, t_flags *f, int *width, int *width2)
-// {
-// 	if (f->width && f->width > ft_base_len(i, unsigned) && f->width > f->precision)
-// 	{
-// 		*width2 = f->width - f->precision;
-// 		*width = f->width - ft_base_len(i, unsigned);
-// 		if (!f->minus)
-// 		{
-// 		if (!f->precision)
-// 			{	
-// 				if (f->zero)
-// 					ft_put_specific_char('0', *width);
-// 				else
-// 					ft_put_specific_char(' ', *width);
-// 			}
-// 		else
-// 			ft_put_specific_char(' ', *width2);
-// 		}
-// 	}
-// }
-
-// static int ft_collect_for_Uu(uintmax_t i, t_flags *f)
-// {
-// 	int width;
-// 	int width2;
-// 	char *str;
-
-// 	width = 0;
-// 	width2 = 0;
-// 	ft_width(i, f, &width, &width2);
-// 	if (f->precision && f->precision > ft_base_len(i, unsigned))
-// 	{
-// 		ft_put_specific_char('0', f->precision - ft_base_len(i, unsigned));
-// 		ft_putstr(str = ft_itoa_unsigned(i, unsigned));
-// 		if (f->minus)
-// 			ft_put_specific_char(' ', width2);
-// 		ft_strdel(&str);
-// 		return (f->precision + width2);
-// 	}
-// 	ft_putstr(str = ft_itoa_unsigned(i, unsigned));
-// 	if (f->minus)
-// 		ft_put_specific_char(' ', width);
-// 	ft_strdel(&str);
-// 	return (ft_base_len(i, unsigned) + width); 
-// }
-
 static	int ft_zero(uintmax_t i, t_flags *f, int len)
 {
 	char *str;

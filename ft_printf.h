@@ -14,8 +14,6 @@
 # define FT_PRINTF_H
 # include "./libft/libft.h"
 # include <stdarg.h>
-# include <wchar.h>
-# include <inttypes.h>
 
 #include <stdio.h>//
 #include <locale.h>//
@@ -46,10 +44,6 @@ int		ft_Oo(va_list lst, char c, t_flags *f);
 int 	ft_Uu(va_list lst, char c, t_flags *f);
 int 	ft_Ddi(va_list lst, char c, t_flags *f);
 int 	ft_p(va_list lst, t_flags *f);
-char 	*ft_itoa_10(intmax_t n);
-int		ft_count_len(intmax_t a);
-char 	*ft_itoa_unsigned(uintmax_t value, unsigned int base);
-int		ft_base_len(uintmax_t value, unsigned int base);
 int		ft_check_width(const char *str);
 int		ft_check_precision(const char *str);
 int		ft_conversions(char c);
@@ -58,7 +52,6 @@ void	ft_zero_to_all(t_flags *f);
 void	ft_collect_flags(char c, t_flags *f, const char ***str, int n_width);
 int 	ft_percentage(t_flags *f);
 int 	ft_plus_space(intmax_t i, t_flags *f);
-void	ft_upper(char *str);
 void	ft_find_cast_flags(const char *str, t_flags *f);
 int		ft_if_cast_flags(t_flags *f);
 intmax_t ft_cast_to_signed(intmax_t i, t_flags *f);

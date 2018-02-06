@@ -10,20 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-int		ft_base_len(uintmax_t value, unsigned int base)
-{
-	int i;
-
-	i = 1;
-	while (value >= base)
-	{
-		value = value / base;
-		i++;
-	}
-	return (i);
-}
+#include "libft.h"
 
 static void	ft_letter(uintmax_t value, int len, char **num)
 {

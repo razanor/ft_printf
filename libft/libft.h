@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <wchar.h>
+# include <inttypes.h>
 
 typedef struct		s_list
 {
@@ -92,6 +93,10 @@ int 				ft_count_bytes(wchar_t c);
 int					ft_putwchar(wchar_t c);
 int					ft_putwstr(wchar_t *str);
 void				ft_put_specific_char(char c, int i);
-
+void				ft_upper(char *str);
+char 				*ft_itoa_unsigned(uintmax_t value, unsigned int base);
+int					ft_base_len(uintmax_t value, unsigned int base);
+char 				*ft_itoa_10(intmax_t n);
+int					ft_count_len(intmax_t a);
 
 #endif

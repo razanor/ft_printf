@@ -10,26 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-int	ft_count_len(intmax_t a)
-{
-	int i;
-
-	i = 1;
-	if (a < -9223372036854775807)
-		return (19);	
-	if (a < 0)	
-		a = -a;
-	if (a <= 9)
-		return (i);
-	while (a > 9)
-	{
-		i++;
-		a = a / 10;
-	}
-	return (i); 
-}
+#include "libft.h"
 
 static char *ft_too_big(int len, char *str)
 {

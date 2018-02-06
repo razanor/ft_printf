@@ -14,7 +14,6 @@
 
 void	ft_collect_flags(char c, t_flags *f, const char ***str, int n_width)
 {
-	
 	if (c == '#')
 		f->slash = 1;
 	if (c == '-')
@@ -47,13 +46,11 @@ void	ft_find_cast_flags(const char *str, t_flags *f)
 		{
 			f->ll = 1;
 			i = i + 2;
-			//return ;
 		}
 		if (str[i] == 'h' && str[i + 1] == 'h')
 		{
 			f->hh = 1;
 			i = i + 2;
-			//return ;
 		}
 		if (str[i] == 'l')
 			f->l = 1;
