@@ -21,6 +21,11 @@ static	int	ft_collect_for_c(char i, t_flags *f)
 			ft_putchar(i);
 			ft_put_specific_char(' ', f->width - 1);
 		}
+		else if (f->zero)
+		{
+			ft_put_specific_char('0', f->width - 1);
+			ft_putchar(i);
+		}
 		else
 		{
 			ft_put_specific_char(' ', f->width - 1);

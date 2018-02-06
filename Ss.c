@@ -56,7 +56,14 @@ static int	ft_collect_for_s(char *s, t_flags *f)
 			write (1, str, len);
 			ft_put_specific_char(' ', f->width - len);
 		}
-		else
+		else if (f->zero)
+		{
+			ft_put_specific_char('0', f->width - len);
+			write (1, str, len);
+		}
+		else if (f->zero_precision)
+			ft_put_specific_char(' ', f->width);
+		else 
 		{
 			ft_put_specific_char(' ', f->width - len);
 			write (1, str, len);
@@ -66,7 +73,6 @@ static int	ft_collect_for_s(char *s, t_flags *f)
 	}
 	write (1, str, len);
 	ft_strdel(&str);
-
 	return (len);
 }
 
@@ -79,8 +85,7 @@ int	ft_Ss(va_list lst, char c, t_flags *f)
 	{
 		if (ft_if_cast_flags(f))
 			return (ft_collect_for_S((va_arg(lst, wchar_t*)), f));
-		s = va_arg(lst, char*);
-		if (!s)
+		if (!(s = va_arg(lst, char*)))
 		{
 			ft_putstr("(null)");
 			return (6);
@@ -89,8 +94,7 @@ int	ft_Ss(va_list lst, char c, t_flags *f)
 	}
 	if (c == 'S')
 	{
-		a = va_arg(lst, wchar_t*);
-		if (!a)
+		if (!(a = va_arg(lst, wchar_t*)))
 		{
 			ft_putstr("(null)");
 			return (6);

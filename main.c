@@ -19,10 +19,10 @@ int main(void)
 {
 	int a;
 	int *d;
-
-	a = ft_printf("{%10R}");
+	setlocale(LC_ALL, " ");
+	a = ft_printf("%4.s\n", "42");
 	printf("%d\n", a);
-	a = printf("{%10R}");
+	a = printf("%4.s\n", "42");
 	printf("%d\n", a);
 	
 	// wchar_t c = L'暖';
