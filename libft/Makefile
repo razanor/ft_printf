@@ -21,7 +21,8 @@ ft_strmap.c ft_strmapi.c ft_strequ.c ft_strnequ.c ft_strsub.c ft_strjoin.c \
 ft_strtrim.c ft_strsplit.c ft_itoa.c ft_putchar.c ft_putstr.c ft_putendl.c \
 ft_putnbr.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
 ft_lstnew.c ft_lstdelone.c ft_lstdel.c ft_lstadd.c ft_lstiter.c ft_lstmap.c \
-ft_count_w.c ft_number_size.c
+ft_count_w.c ft_number_size.c ft_strwdup.c ft_strwsub.c ft_wstrlen.c \
+ft_count_bytes.c ft_putwchar.c ft_putwstr.c ft_put_specific_char.c
 FLAGS = -Wall -Wextra -Werror
 OBJ = $(SRC:.c=.o)
 

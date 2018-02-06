@@ -15,6 +15,7 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <wchar.h>
 
 typedef struct		s_list
 {
@@ -84,5 +85,13 @@ void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 int					ft_count_w(const char *s, char c);
 int					ft_number_size(long n);
+wchar_t 			*ft_strwsub(wchar_t *s, unsigned int start, unsigned int len);
+wchar_t 			*ft_strwdup(wchar_t *s);
+int					ft_wstrlen(wchar_t *str);
+int 				ft_count_bytes(wchar_t c);
+int					ft_putwchar(wchar_t c);
+int					ft_putwstr(wchar_t *str);
+void				ft_put_specific_char(char c, int i);
+
 
 #endif

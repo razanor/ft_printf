@@ -12,43 +12,6 @@
 
 #include "ft_printf.h"
 
-static wchar_t *ft_strwsub(wchar_t *s, unsigned int start, unsigned int len)
-{
-	unsigned int i;
-	wchar_t *sub;
-
-	i = 0;
-	if (!(sub = (wchar_t *)malloc(sizeof(wchar_t) * (len + 1))))
-		return (NULL);
-	while (s[start] && i < len)
-	{
-		sub[i] = s[start];
-		i++;
-		start++;
-	}
-	sub[i] = '\0';
-	return (sub);
-}
-
-static wchar_t *ft_strwdup(wchar_t *s)
-{
-	wchar_t *str;
-	int i;
-	int len;
-
-	len = ft_wstrlen(s);
-	i = 0;
-	if (!(str = (wchar_t *)malloc(sizeof(wchar_t) * (len + 1))))
-		return (NULL);
-	while (i < len)
-	{
-		str[i] = s[i];
-		i++;
-	} 
-	str[i] = '\0';
-	return (str);
-}
-
 static wchar_t *ft_precision_S(wchar_t *a, t_flags *f)
 {
 	int size;

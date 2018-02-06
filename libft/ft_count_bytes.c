@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_count_bytes.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nrepak <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/16 19:04:54 by nrepak            #+#    #+#             */
-/*   Updated: 2018/01/16 19:05:41 by nrepak           ###   ########.fr       */
+/*   Created: 2018/02/06 23:49:35 by nrepak            #+#    #+#             */
+/*   Updated: 2018/02/06 23:49:52 by nrepak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <locale.h>
+#include "libft.h"
 
-#define MACRO "%d\n", 200
-
-int main(void)
+int ft_count_bytes(wchar_t c)
 {
-	int a;
-	int *d;
-	setlocale(LC_ALL, "");
-	a = ft_printf("{%05.Z}", 0);
-	printf("%d\n", a);
-	a = printf("{%05.Z}", 0);
-	printf("%d\n", a);
-	
-	// wchar_t c = L'暖';
-	// wchar_t b = L'ح';
-	// setlocale(LC_ALL, " ");
-	return (0);
+	if (c <= 127)
+		return (1);
+	else if (c <= 2047)
+		return (2);
+	else if (c <= 65535)
+		return (3);
+	else
+		return (4);
 }

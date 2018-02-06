@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strwdup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nrepak <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/16 19:04:54 by nrepak            #+#    #+#             */
-/*   Updated: 2018/01/16 19:05:41 by nrepak           ###   ########.fr       */
+/*   Created: 2018/02/06 23:36:00 by nrepak            #+#    #+#             */
+/*   Updated: 2018/02/06 23:36:50 by nrepak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <locale.h>
+#include "libft.h"
 
-#define MACRO "%d\n", 200
-
-int main(void)
+wchar_t *ft_strwdup(wchar_t *s)
 {
-	int a;
-	int *d;
-	setlocale(LC_ALL, "");
-	a = ft_printf("{%05.Z}", 0);
-	printf("%d\n", a);
-	a = printf("{%05.Z}", 0);
-	printf("%d\n", a);
-	
-	// wchar_t c = L'暖';
-	// wchar_t b = L'ح';
-	// setlocale(LC_ALL, " ");
-	return (0);
+	wchar_t *str;
+	int i;
+	int len;
+
+	len = ft_wstrlen(s);
+	i = 0;
+	if (!(str = (wchar_t *)malloc(sizeof(wchar_t) * (len + 1))))
+		return (NULL);
+	while (i < len)
+	{
+		str[i] = s[i];
+		i++;
+	} 
+	str[i] = '\0';
+	return (str);
 }
