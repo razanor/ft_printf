@@ -98,14 +98,14 @@ static int ft_collect_for_Uu(uintmax_t i, t_flags *f)
 	return (len);
 }
 
-int ft_Uu(va_list lst, char c, t_flags *f)
+int ft_unsigned_decimal(va_list lst, char c, t_flags *f)
 {
 	uintmax_t i;
 
 	i = va_arg(lst, uintmax_t);
 	if (c == 'u')
 	{
-		ft_if_cast_flags(f) ? (i = ft_cast_to_unsigned(i, f)) : (i = (unsigned int)i);	
+		CAST ? (i = ft_cast_to_unsigned(i, f)) : (i = (unsigned int)i);	
 		return (ft_collect_for_Uu(i, f)); 
 	}
 	if (c == 'U')

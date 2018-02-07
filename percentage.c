@@ -6,13 +6,13 @@
 /*   By: nrepak <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 13:18:53 by nrepak            #+#    #+#             */
-/*   Updated: 2018/01/30 13:19:15 by nrepak           ###   ########.fr       */
+/*   Updated: 2018/02/07 15:37:41 by nrepak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_percentage(t_flags *f)
+int		ft_percentage(t_flags *f)
 {
 	if (f->width && f->width > 1)
 	{
@@ -34,5 +34,5 @@ int ft_percentage(t_flags *f)
 		return (f->width);
 	}
 	ft_putchar('%');
-	return (1);	
+	return (1);
 }

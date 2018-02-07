@@ -6,7 +6,7 @@
 /*   By: nrepak <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 17:17:55 by nrepak            #+#    #+#             */
-/*   Updated: 2018/01/24 17:18:13 by nrepak           ###   ########.fr       */
+/*   Updated: 2018/02/07 15:17:04 by nrepak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		ft_conversions(char c)
 	return (0);
 }
 
-int ft_plus_space(intmax_t i, t_flags *f)
+int		ft_plus_space(intmax_t i, t_flags *f)
 {
 	if (f->plus)
 	{
@@ -64,15 +64,25 @@ int		ft_is_conversions(const char *str)
 		while (str[i] == 'h' || str[i] == 'l' || str[i] == 'j' || str[i] == 'z')
 			i++;
 		if ((ft_isalpha(str[i]) || str[i] == '%'))
-		{ 
+		{
 			if (ft_conversions(str[i]))
 				return (1);
 			else
-				break ; 
+				break ;
 		}
 		i++;
 	}
 	return (0);
+}
+
+int		ft_is_flags(char c)
+{
+	if (c == '#' || c == '0' || c == '-' || c == ' ' || c == '+')
+		return (1);
+	else if (c == 'h' || c == 'l' || c == 'j' || c == 'z')
+		return (1);
+	else
+		return (0);
 }
 
 void	ft_zero_to_all(t_flags *f)

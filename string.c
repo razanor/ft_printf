@@ -123,14 +123,14 @@ static int	ft_collect_for_s(char *s, t_flags *f)
 	return (len);
 }
 
-int	ft_Ss(va_list lst, char c, t_flags *f)
+int	ft_string(va_list lst, char c, t_flags *f)
 {
 	char *s;
 	wchar_t *a;
 
 	if (c == 's')
 	{
-		if (ft_if_cast_flags(f))
+		if (CAST)
 			return (ft_collect_for_S((va_arg(lst, wchar_t*)), f));
 		if (!(s = va_arg(lst, char*)))
 		{

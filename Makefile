@@ -12,7 +12,7 @@
 
 NAME := libftprintf.a
 
-SRC := 	ft_printf.c auxiliary.c auxiliary2.c Cc.c Ss.c Ddi.c Uu.c Oo.c Xx.c p.c width_and_precision.c percentage.c     
+SRC := 	ft_printf.c auxiliary.c auxiliary2.c character.c string.c decimal.c unsigned_decimal.c octal.c hexadecimal.c pointer.c width_and_precision.c percentage.c     
 
 OBJ_DIR := obj
 

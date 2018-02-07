@@ -6,15 +6,15 @@
 /*   By: nrepak <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 12:41:49 by nrepak            #+#    #+#             */
-/*   Updated: 2018/01/24 12:42:08 by nrepak           ###   ########.fr       */
+/*   Updated: 2018/02/07 15:35:32 by nrepak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static	int	ft_find_len_w(const char *str)
+static	int		ft_find_len_w(const char *str)
 {
-	int 	i;
+	int		i;
 	int		len;
 
 	i = 0;
@@ -28,7 +28,7 @@ static	int	ft_find_len_w(const char *str)
 	return (len);
 }
 
-static	int	ft_find_len_p(const char *str)
+static	int		ft_find_len_p(const char *str)
 {
 	int		i;
 	int		len;
@@ -46,7 +46,7 @@ static	int	ft_find_len_p(const char *str)
 	return (len);
 }
 
-int		ft_check_width(const char *str)
+int				ft_check_width(const char *str)
 {
 	char	*num;
 	int		i;
@@ -70,7 +70,7 @@ int		ft_check_width(const char *str)
 	return (j);
 }
 
-int		ft_check_precision(const char *str)
+int				ft_check_precision(const char *str)
 {
 	char	*num;
 	int		i;
@@ -96,7 +96,7 @@ int		ft_check_precision(const char *str)
 	return (j);
 }
 
-void	ft_zero_precision(const char *str, t_flags *f)
+void			ft_zero_precision(const char *str, t_flags *f)
 {
 	int i;
 

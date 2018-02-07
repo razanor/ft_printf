@@ -128,13 +128,13 @@ static int ft_collect_for_Xx(uintmax_t i, t_flags *f, char c)
 	return (len);
 }
 
-int	ft_Xx(va_list lst, char c, t_flags *f)
+int	ft_hexadecimal(va_list lst, char c, t_flags *f)
 {
 	uintmax_t i;
 	int a;
 
 	a = 0;
 	i = va_arg(lst, uintmax_t);
-	ft_if_cast_flags(f) ? (i = ft_cast_to_unsigned(i, f)) : (i = (unsigned int)i);	
+	CAST ? (i = ft_cast_to_unsigned(i, f)) : (i = (unsigned int)i);	
 	return (ft_collect_for_Xx(i, f, c));
 }

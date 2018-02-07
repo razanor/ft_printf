@@ -121,14 +121,14 @@ static	int ft_collect_for_Ddi(intmax_t i, t_flags *f)
 	return (len);
 }
 
-int ft_Ddi(va_list lst, char c, t_flags *f)
+int ft_decimal(va_list lst, char c, t_flags *f)
 {	
 	intmax_t i;
 
 	i = va_arg(lst, intmax_t);
 	if (c == 'd' || c == 'i')
 	{	
-		ft_if_cast_flags(f) ? (i = ft_cast_to_signed(i, f)) : (i = (int)i);	
+		CAST ? (i = ft_cast_to_signed(i, f)) : (i = (int)i);	
 		return (ft_collect_for_Ddi(i, f));
 	}
 	if (c == 'D')

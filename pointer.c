@@ -102,7 +102,7 @@ static 	int ft_collect_for_p(uintmax_t i, t_flags *f)
 	return (len + 2);
 }
 
-int ft_p(va_list lst, t_flags *f)
+int ft_pointer(va_list lst, t_flags *f)
 {
 	uintmax_t i;
 

@@ -6,23 +6,23 @@
 /*   By: nrepak <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 18:18:27 by nrepak            #+#    #+#             */
-/*   Updated: 2018/01/29 18:18:34 by nrepak           ###   ########.fr       */
+/*   Updated: 2018/02/07 15:32:31 by nrepak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_collect_flags(char c, t_flags *f, const char ***str, int n_width)
+void		ft_collect_flags(char c, t_flags *f, const char ***str, int n_width)
 {
 	if (c == '#')
 		f->slash = 1;
 	if (c == '-')
 		f->minus = 1;
-	if (c == '+') 
+	if (c == '+')
 		f->plus = 1;
-	if (c == ' ') 
+	if (c == ' ')
 		f->space = 1;
-	if (c == '0') 
+	if (c == '0')
 		f->zero = 1;
 	if (n_width)
 	{
@@ -35,7 +35,7 @@ void	ft_collect_flags(char c, t_flags *f, const char ***str, int n_width)
 	}
 }
 
-void	ft_find_cast_flags(const char *str, t_flags *f)
+void		ft_find_cast_flags(const char *str, t_flags *f)
 {
 	int i;
 
@@ -64,14 +64,7 @@ void	ft_find_cast_flags(const char *str, t_flags *f)
 	}
 }
 
-int		ft_if_cast_flags(t_flags *f)
-{
-	if (f->hh || f->h || f->l || f->ll || f->j || f->z)
-		return (1);
-	return (0);
-}
-
-intmax_t ft_cast_to_signed(intmax_t i, t_flags *f)
+intmax_t	ft_cast_to_signed(intmax_t i, t_flags *f)
 {
 	if (f->z)
 		return ((size_t)i);
@@ -88,7 +81,7 @@ intmax_t ft_cast_to_signed(intmax_t i, t_flags *f)
 	return (0);
 }
 
-uintmax_t ft_cast_to_unsigned(uintmax_t i, t_flags *f)
+uintmax_t	ft_cast_to_unsigned(uintmax_t i, t_flags *f)
 {
 	if (f->z)
 		return ((size_t)i);
