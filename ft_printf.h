@@ -54,6 +54,7 @@ int			ft_is_conversions(const char *str);
 void		ft_zero_to_all(t_flags *f);
 void		ft_collect_flags(char c, t_flags *f,
 							const char ***str, int n_width);
+char		*ft_upper_lower_string(uintmax_t i, char c);
 int			ft_plus_space(intmax_t i, t_flags *f);
 void		ft_find_cast_flags(const char *str, t_flags *f);
 intmax_t	ft_cast_to_signed(intmax_t i, t_flags *f);

@@ -97,3 +97,14 @@ uintmax_t	ft_cast_to_unsigned(uintmax_t i, t_flags *f)
 		return ((unsigned char)i);
 	return (0);
 }
+
+char		*ft_upper_lower_string(uintmax_t i, char c)
+{
+	char *num;
+
+	if (c == 'X')
+	 	ft_upper(num = ft_itoa_unsigned(i, 16));
+	else
+		num = ft_itoa_unsigned(i, 16);
+	return (num);
+}
