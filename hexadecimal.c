@@ -63,15 +63,16 @@ static char *ft_precision_slash(uintmax_t i, t_flags *f, char c)
 	len = 0;
 	a = 0;
 	(c == 'X') ? (ft_upper(num = ft_itoa_unsigned(i, 16))) : (num = ft_itoa_unsigned(i, 16));
-	(f->slash && i) ? (flag = 2) : (flag = 0);
-	f->precision > ft_base_len(i, 16) ? (str = ft_strnew(f->precision + flag)) :
-		(str = ft_strnew(ft_base_len(i, 16) + flag));
+	//num = (c == 'X') ? ft_upper((ft_itoa_unsigned(i, 16))) : ft_itoa_unsigned(i, 16); // example
+	flag = (f->slash && i) ? 2 : 0;
+	str = (f->precision > ft_base_len(i, 16)) ? ft_strnew(f->precision + flag) :
+		ft_strnew(ft_base_len(i, 16) + flag);
 	if (f->precision && f->precision > ft_base_len(i, 16))
 		return (ft_precision(i, str, f, c));
 	if (flag)
 	{
 		str[len++] = '0';
-		c == 'X' ? (str[len++] = 'X') : (str[len++] = 'x');
+		str[len++] = (c == 'X') ? 'X' : 'x';
 	}
 	while (num[a])
 		str[len++] = num[a++];
@@ -135,6 +136,6 @@ int	ft_hexadecimal(va_list lst, char c, t_flags *f)
 
 	a = 0;
 	i = va_arg(lst, uintmax_t);
-	CAST ? (i = ft_cast_to_unsigned(i, f)) : (i = (unsigned int)i);	
+	i = (CAST) ? (ft_cast_to_unsigned(i, f)) : (unsigned int)i;	
 	return (ft_collect_for_Xx(i, f, c));
 }
