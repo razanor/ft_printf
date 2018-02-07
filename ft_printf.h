@@ -60,4 +60,10 @@ intmax_t	ft_cast_to_signed(intmax_t i, t_flags *f);
 uintmax_t	ft_cast_to_unsigned(uintmax_t i, t_flags *f);
 int			ft_is_flags(char c);
 
+int 		ft_zero_decimal(int len, intmax_t i, t_flags *f);
+int 		ft_zero_hexadecimal(int len, uintmax_t i, t_flags *f, char c);
+int 		ft_zero_octal(uintmax_t i, t_flags *f);
+int 		ft_zero_pointer(uintmax_t i, t_flags *f, int len);
+int 		ft_zero_unsigned_decimal(uintmax_t i, t_flags *f, int len);
+
 #endif

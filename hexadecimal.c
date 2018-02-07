@@ -12,21 +12,6 @@
 
 #include "ft_printf.h"
 
-static int ft_zero(int len, uintmax_t i, t_flags *f, char c)
-{
-	int flag;
-	char *str;
-
-	(c == 'X') ? (ft_upper(str = ft_itoa_unsigned(i, 16))) : (str = ft_itoa_unsigned(i, 16));
-	(f->slash && i) ? (flag = 2) : (flag = 0);
-	if (flag)
-		c == 'X' ? (ft_putstr("0X")) : (ft_putstr("0x"));
-	ft_put_specific_char('0', f->width - len);
-	write(1, str, ft_strlen(str));
-	ft_strdel(&str);
-	return (f->width); 
-}
-
 static char *ft_precision(uintmax_t i, char *str, t_flags *f, char c)
 {
 	int len;
@@ -93,7 +78,7 @@ static int ft_width(intmax_t i, char **str, t_flags *f, char c)
 	else if (f->zero && !f->precision && !f->zero_precision)
 	{
 		ft_strdel(&(*str));
-		return (ft_zero(len, i, f, c));
+		return (ft_zero_hexadecimal(len, i, f, c));
 	}
 	else if (f->zero_precision && i == 0)
 	{
