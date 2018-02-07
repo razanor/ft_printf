@@ -39,6 +39,8 @@ int			ft_printf(const char *str, ...);
 int			ft_percentage(t_flags *f);
 int			ft_character(va_list lst, char c, t_flags *f);
 int			ft_string(va_list lst, char c, t_flags *f);
+int 		ft_wide_string(va_list lst, t_flags *f);
+int			ft_collect_for_wide_string(wchar_t *a, t_flags *f);
 int			ft_hexadecimal(va_list lst, char c, t_flags *f);
 int			ft_octal(va_list lst, char c, t_flags *f);
 int			ft_unsigned_decimal(va_list lst, char c, t_flags *f);
