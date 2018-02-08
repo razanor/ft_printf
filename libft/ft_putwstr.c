@@ -6,13 +6,13 @@
 /*   By: nrepak <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 23:56:15 by nrepak            #+#    #+#             */
-/*   Updated: 2018/02/06 23:56:28 by nrepak           ###   ########.fr       */
+/*   Updated: 2018/02/08 15:57:49 by nrepak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_putwstr(wchar_t *str)
+int		ft_putwstr(wchar_t *str)
 {
 	int i;
 	int len;

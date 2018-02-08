@@ -6,7 +6,7 @@
 /*   By: nrepak <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 18:18:27 by nrepak            #+#    #+#             */
-/*   Updated: 2018/02/07 15:32:31 by nrepak           ###   ########.fr       */
+/*   Updated: 2018/02/08 15:48:59 by nrepak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ char		*ft_upper_lower_string(uintmax_t i, char c)
 	char *num;
 
 	if (c == 'X')
-	 	ft_upper(num = ft_itoa_unsigned(i, 16));
+		ft_upper(num = ft_itoa_unsigned(i, 16));
 	else
 		num = ft_itoa_unsigned(i, 16);
 	return (num);

@@ -6,17 +6,17 @@
 /*   By: nrepak <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 23:36:00 by nrepak            #+#    #+#             */
-/*   Updated: 2018/02/06 23:36:50 by nrepak           ###   ########.fr       */
+/*   Updated: 2018/02/08 16:01:07 by nrepak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-wchar_t *ft_strwdup(wchar_t *s)
+wchar_t		*ft_strwdup(wchar_t *s)
 {
-	wchar_t *str;
-	int i;
-	int len;
+	wchar_t	*str;
+	int		i;
+	int		len;
 
 	len = ft_wstrlen(s);
 	i = 0;
@@ -26,7 +26,7 @@ wchar_t *ft_strwdup(wchar_t *s)
 	{
 		str[i] = s[i];
 		i++;
-	} 
+	}
 	str[i] = '\0';
 	return (str);
 }

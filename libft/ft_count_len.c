@@ -6,20 +6,20 @@
 /*   By: nrepak <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 00:14:12 by nrepak            #+#    #+#             */
-/*   Updated: 2018/02/07 00:14:40 by nrepak           ###   ########.fr       */
+/*   Updated: 2018/02/08 16:03:40 by nrepak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_count_len(intmax_t a)
+int		ft_count_len(intmax_t a)
 {
 	int i;
 
 	i = 1;
 	if (a < -9223372036854775807)
-		return (19);	
-	if (a < 0)	
+		return (19);
+	if (a < 0)
 		a = -a;
 	if (a <= 9)
 		return (i);
@@ -28,5 +28,5 @@ int	ft_count_len(intmax_t a)
 		i++;
 		a = a / 10;
 	}
-	return (i); 
+	return (i);
 }

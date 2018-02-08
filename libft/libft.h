@@ -6,7 +6,7 @@
 /*   By: nrepak <nrepak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 13:03:26 by nrepak            #+#    #+#             */
-/*   Updated: 2017/11/19 19:47:54 by nrepak           ###   ########.fr       */
+/*   Updated: 2018/02/08 16:07:01 by nrepak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,17 +86,18 @@ void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 int					ft_count_w(const char *s, char c);
 int					ft_number_size(long n);
-wchar_t 			*ft_strwsub(wchar_t *s, unsigned int start, unsigned int len);
-wchar_t 			*ft_strwdup(wchar_t *s);
+wchar_t				*ft_strwsub(wchar_t *s, unsigned int start,
+					unsigned int len);
+wchar_t				*ft_strwdup(wchar_t *s);
 int					ft_wstrlen(wchar_t *str);
-int 				ft_count_bytes(wchar_t c);
+int					ft_count_bytes(wchar_t c);
 int					ft_putwchar(wchar_t c);
 int					ft_putwstr(wchar_t *str);
 void				ft_put_specific_char(char c, int i);
 void				ft_upper(char *str);
-char 				*ft_itoa_unsigned(uintmax_t value, unsigned int base);
+char				*ft_itoa_unsigned(uintmax_t value, unsigned int base);
 int					ft_base_len(uintmax_t value, unsigned int base);
-char 				*ft_itoa_10(intmax_t n);
+char				*ft_itoa_10(intmax_t n);
 int					ft_count_len(intmax_t a);
 
 #endif

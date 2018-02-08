@@ -6,14 +6,14 @@
 /*   By: nrepak <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 23:46:45 by nrepak            #+#    #+#             */
-/*   Updated: 2018/02/06 23:47:00 by nrepak           ###   ########.fr       */
+/*   Updated: 2018/02/08 16:01:44 by nrepak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_wstrlen(wchar_t *str)
-{	
+int		ft_wstrlen(wchar_t *str)
+{
 	int i;
 	int len;
 
