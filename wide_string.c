@@ -78,11 +78,23 @@ int					ft_collect_for_wide_string(wchar_t *a, t_flags *f)
 int					ft_wide_string(va_list lst, t_flags *f)
 {
 	wchar_t		*a;
+	int			i;
 
+	i = 0;
 	if (!(a = va_arg(lst, wchar_t*)))
 	{
 		ft_putstr("(null)");
 		return (6);
+	}
+	if (MB_CUR_MAX == 1)
+	{
+		while (a[i])
+		{
+			if (a[i] > 255)
+				return (-1);
+			i++;
+		}
+		return (ft_collect_for_string((char*)a, f));
 	}
 	return (ft_collect_for_wide_string(a, f));
 }

@@ -6,7 +6,7 @@
 /*   By: nrepak <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/28 20:15:51 by nrepak            #+#    #+#             */
-/*   Updated: 2018/02/07 16:17:34 by nrepak           ###   ########.fr       */
+/*   Updated: 2018/02/08 18:08:37 by nrepak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int		ft_width(int len, char **str, t_flags *f)
 	return (f->width);
 }
 
-static int		ft_collect_for_string(char *s, t_flags *f)
+int				ft_collect_for_string(char *s, t_flags *f)
 {
 	char	*str;
 	int		len;
