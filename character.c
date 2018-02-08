@@ -70,6 +70,14 @@ int				ft_character(va_list lst, char c, t_flags *f)
 	}
 	if (c == 'C')
 	{
+		if (MB_CUR_MAX == 1)
+		{
+			a = (va_arg(lst, wchar_t));
+			if (a > 255)
+				return (-1);
+			else
+				return (ft_collect_for_char((char)a, f));
+		}
 		a = va_arg(lst, wchar_t);
 		return (ft_collect_for_wchar(a, f));
 	}
