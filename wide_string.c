@@ -94,7 +94,6 @@ int					ft_wide_string(va_list lst, t_flags *f)
 				return (-1);
 			i++;
 		}
-		return (ft_collect_for_string((char*)a, f));
 	}
 	return (ft_collect_for_wide_string(a, f));
 }
