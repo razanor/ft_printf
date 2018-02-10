@@ -16,7 +16,6 @@
 
 # include "./libft/libft.h"
 # include <stdarg.h>
-# include <locale.h>
 
 typedef	struct	s_flags
 {
